@@ -24,7 +24,8 @@ app.post("/contact-form", async (req, res) => {
     // check for user,if user exist return existing user else create a new user
     const userResult = await user.findOneAndUpdate(
       { email: email },
-      { $setOnInsert: { email, name: name ? name : "" } },
+      { $setOnInsert: { email } },
+      { $set: { name: name ? name : "" } },
       { new: true, upsert: true }
     );
 
