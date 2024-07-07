@@ -11,7 +11,7 @@ const app = express();
 const port = 5000;
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "https://to-let-contact-us.netlify.app" }));
 
 app.post("/contact-form", async (req, res) => {
   try {
