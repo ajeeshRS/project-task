@@ -16,7 +16,7 @@ function HomePage() {
         email: z.string().email(),
         message: z.string()
             .min(1, "message cannot be empty")
-            .max(150, "max character reached")
+            .max(250, "max character reached")
     });
     // react-hook-form
     const { handleSubmit, formState: { errors }, reset, register } = useForm<quickContact>({ resolver: zodResolver(schema) })
@@ -61,14 +61,14 @@ function HomePage() {
                                 {errors.email.message as string}
                             </p>
                         )}
-                        <textarea className="bg-[#ececec] md:w-3/6 w-full  min-h-[50px] rounded-xl p-3 my-1 scrollbar-hide outline-none" placeholder="Type your message here" {...register("message")} maxLength={150} onChange={(e) => handleTextarea(e)} />
+                        <textarea className="bg-[#ececec] md:w-3/6 w-full  min-h-[50px] rounded-xl p-3 my-1 scrollbar-hide outline-none" placeholder="Type your message here" {...register("message")} maxLength={250} onChange={(e) => handleTextarea(e)} />
                         {errors.message && (
                             <p className="text-sm font-poppins py-1 text-red-500">
                                 {errors.message.message as string}
                             </p>
                         )}
                         {
-                            textAreaLength === 150 &&
+                            textAreaLength === 250 &&
                             <p className="text-sm font-poppins py-1 text-red-500">
                                 Max character reached.
                             </p>

@@ -5,6 +5,7 @@ const cors = require("cors");
 const user = require("./models/userContactModel");
 const query = require("./models/messageModel");
 const sendConfirmationMail = require("./utils/utils");
+const contactLimiter = require("./middlewares/rateLimit");
 dotenv.config();
 
 const app = express();
@@ -13,7 +14,7 @@ const port = 5000;
 app.use(express.json());
 app.use(cors({ origin: "https://to-let-contact-us.netlify.app" }));
 
-app.post("/contact-form", async (req, res) => {
+app.post("/contact-form", contactLimiter, async (req, res) => {
   try {
     const { email, name, topic, message } = req.body;
 
