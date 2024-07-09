@@ -104,7 +104,7 @@ function ContactPage() {
                         <p className="py-1 text-slate-400 text-xs md:w-3/6 w-4/6 px-3">
                             We assure you that the information you've provided will only be used to respond to your inquiry.
                         </p>
-                        <button className={`${isLoading && ' px-2 py-2 flex justify-center'} w-2/6 h-10 font-poppins px-2 py-2 bg-[#3EB5A5] rounded-full text-white hover:bg-[#36a395] duration-300 ease-in-out transition-all my-2`} type="submit">{isLoading ? <Loader /> : 'Send Message'}</button>
+                        <button className={`${isLoading && 'flex justify-center'} md:w-2/6 w-5/6 font-poppins px-2 py-2 bg-[#3EB5A5] rounded-full text-white hover:bg-[#36a395] duration-300 ease-in-out transition-all my-2 `} type="submit">{isLoading ? <Loader /> : 'Send Message'}</button>
                     </form>
                 </div>
             </div></>)
