@@ -11,6 +11,8 @@ dotenv.config();
 const app = express();
 const port = 5000;
 
+app.set("trust proxy", 1);
+
 app.use(express.json());
 app.use(cors({ origin: "https://to-let-contact-us.netlify.app" }));
 
