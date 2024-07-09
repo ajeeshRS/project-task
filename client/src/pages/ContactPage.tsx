@@ -7,10 +7,11 @@ import { Link } from "react-router-dom";
 import { contactForm } from "../interfaces/interfaces";
 import { API } from "../api/api";
 import toast from "react-hot-toast";
+import Loader from "../components/Loader";
 
 function ContactPage() {
     const [textAreaLength, setTextAreaLength] = useState(null)
-
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     // zod schema
     const schema = z.object({
         email: z.string().email(),
@@ -33,12 +34,15 @@ function ContactPage() {
     // sending form
     const sendForm = async (data: contactForm) => {
         try {
+            setIsLoading(true)
             const res = await API.post("/contact-form", data)
+            setIsLoading(false)
             toast.success(res.data)
             reset()
         } catch (err: any) {
             console.error(err)
             toast.error(err.response.data)
+            setIsLoading(false)
         }
     }
     return (
@@ -100,7 +104,7 @@ function ContactPage() {
                         <p className="py-1 text-slate-400 text-xs md:w-3/6 w-4/6 px-3">
                             We assure you that the information you've provided will only be used to respond to your inquiry.
                         </p>
-                        <button className=" font-poppins px-3 py-2 bg-[#3EB5A5] rounded-full text-white hover:bg-[#36a395] duration-300 ease-in-out transition-all my-2" type="submit">Send Message</button>
+                        <button className={`${isLoading && ' px-2 py-2 flex justify-center'} w-2/6 h-10 font-poppins px-2 py-2 bg-[#3EB5A5] rounded-full text-white hover:bg-[#36a395] duration-300 ease-in-out transition-all my-2`} type="submit">{isLoading ? <Loader /> : 'Send Message'}</button>
                     </form>
                 </div>
             </div></>)
